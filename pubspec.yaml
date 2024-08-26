@@ -32,6 +32,7 @@ dependencies:
     git:
       url: https://github.com/gluestack/gluestack-ui-flutter.git
       ref: feat/modal
+  go_router: ^14.2.7
 
 dev_dependencies:
   flutter_test:

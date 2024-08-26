@@ -378,8 +378,11 @@ class MenDropdown extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
-          ...items.map((item) => Text(item)).toList(),
+          GSText(
+              text: title,
+              style:
+                  GSStyle(textStyle: TextStyle(fontWeight: FontWeight.bold))),
+          ...items.map((item) => GSText(text: item)).toList(),
         ],
       ),
     );
