@@ -24,7 +24,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return GSVStack(
       children: [
         GSBox(
           boxShadow: [
@@ -50,7 +50,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       xlValue: 26,
                     ) ??
                     0),
-            child: Row(
+            child: GSHStack(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
@@ -72,12 +72,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
 
                 GSBox(
                   style: GSStyle(
-                    lg: GSStyle(isVisible: true),
-                    md: GSStyle(isVisible: true),
+               
                     xs: GSStyle(isVisible: false),
                     sm: GSStyle(isVisible: false),
                   ),
-                  child: Row(
+                  child: GSHStack(
                     children: [
                       _buildNavItem("Men"),
                       SizedBox(width: 20),
@@ -124,12 +123,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       prefixIcon: Icon(Icons.search,
                           color: GSTheme.of(context).trueGray400),
                       style: GSStyle(
-                          lg: GSStyle(isVisible: true),
-                          md: GSStyle(isVisible: true),
-                          xs: GSStyle(isVisible: true),
-                          sm: GSStyle(isVisible: true),
-
-                          // bg: GSTheme.of(context).black,
                           onFocus: GSStyle(
                             borderColor: GSTheme.of(context).trueGray200,
                             bg: GSTheme.of(context).black,
@@ -151,12 +144,11 @@ class _CustomAppBarState extends State<CustomAppBar> {
                           0),
                   child: GSBox(
                     style: GSStyle(
-                      lg: GSStyle(isVisible: true),
                       md: GSStyle(isVisible: false),
                       xs: GSStyle(isVisible: false),
                       sm: GSStyle(isVisible: false),
                     ),
-                    child: Row(
+                    child: GSHStack(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -225,7 +217,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           });
         },
         child: GSBox(
-          child: Column(
+          child: GSVStack(
             children: [
               Expanded(
                 child: GSBox(
@@ -279,13 +271,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
               GSFocusableActionDetectorProvider.isHovered(context);
 
           return GSBox(
-            child: Column(
+            child: GSVStack(
               children: [
                 Expanded(
                   child: GSBox(
                       child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Column(
+                    child: GSVStack(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GSIconButton(
@@ -356,7 +348,7 @@ class MenDropdown extends StatelessWidget {
         ),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Row(
+          child: GSHStack(
             children: [
               _buildCategory(
                   "Topwear", ["T-Shirts", "Casual Shirts", "Formal Shirts"]),
@@ -375,7 +367,7 @@ class MenDropdown extends StatelessWidget {
   Widget _buildCategory(String title, List<String> items) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
+      child: GSVStack(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GSText(
@@ -426,7 +418,7 @@ class WomenDropdown extends StatelessWidget {
         ),
         child: SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          child: Row(
+          child: GSHStack(
             children: [
               _buildCategory("Indian & Fusion Wear",
                   ["Kurtas & Suits", "Sarees", "Ethnic Wear"]),
@@ -445,7 +437,7 @@ class WomenDropdown extends StatelessWidget {
   Widget _buildCategory(String title, List<String> items) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: Column(
+      child: GSVStack(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title, style: TextStyle(fontWeight: FontWeight.bold)),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gluestack_ui/gluestack_ui.dart';
 import 'package:myntra_clone/components%20/appbar.dart';
 import 'package:myntra_clone/components%20/bottom_app_bar.dart';
-import 'all_category_screen.dart';
+import 'package:myntra_clone/screens/all_category_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final Widget? childScreen;
@@ -25,9 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: GSBox(
         style: GSStyle(
           lg: GSStyle(isVisible: false),
-          md: GSStyle(isVisible: true),
-          xs: GSStyle(isVisible: true),
-          sm: GSStyle(isVisible: true),
           height: 85,
         ),
         child: GSBox(
@@ -50,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 top: 20,
                 bottom: 10),
           ),
-          child: const Row(
+          child:  GSHStack(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -73,7 +70,10 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            child: widget.childScreen ?? AllCategoryScreen(),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 80.0),
+              child: widget.childScreen ?? AllCategoryScreen(),
+            ),
           ),
           Positioned(
             top: 0,

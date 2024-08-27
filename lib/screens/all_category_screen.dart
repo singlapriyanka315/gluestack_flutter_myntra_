@@ -169,223 +169,111 @@ class _MyWidgetState extends State<AllCategoryScreen> {
     final itemsPerPage = _calculateItemsPerPage(context);
     final screenWidth = MediaQuery.of(context).size.width;
 
-    return Padding(
-      padding: EdgeInsets.only(top: 80.0),
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(
-                top: getResponsiveValue(
-                        context: context,
-                        xsValue: 5,
-                        smValue: 8,
-                        mdValue: 15,
-                        lgValue: 30) ??
-                    30),
-            child: Column(
-              children: [
-                GSBox(
-                  style: GSStyle(
-                    height: getResponsiveValue(
-                            context: context,
-                            xsValue: 100,
-                            smValue: 200,
-                            mdValue: 300,
-                            lgValue: 400,
-                            xlValue: 400) ??
-                        400.0,
-                  ),
-                  child: PageView.builder(
-                    onPageChanged: (int index) {
-                      screenWidth < 850
-                          ? setState(() {
-                              _currentPage = index;
-                              _startTopAutoScroll();
-                            })
-                          : null;
-                    },
-                    controller: _pageController,
-                    itemCount: carouselItems.length,
-                    physics: screenWidth < 850
-                        ? AlwaysScrollableScrollPhysics()
-                        : NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      return GSBox(
-                        child: ClipRRect(
-                          child: GsGestureDetector(
-                            onPressed: () {
-                              context.push("/category");
-                            },
-                            child: GSImage(
-                              path: carouselItems[index]['image']!,
-                              imageType: GSImageType.asset,
-                              fit: BoxFit.fitWidth,
-                              style: GSStyle(
-                                width: double.infinity,
-                              ),
+    return GSVStack(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(
+              top: getResponsiveValue(
+                      context: context,
+                      xsValue: 5,
+                      smValue: 8,
+                      mdValue: 15,
+                      lgValue: 30) ??
+                  30),
+          child: GSVStack(
+            children: [
+              GSBox(
+                style: GSStyle(
+                  height: getResponsiveValue(
+                          context: context,
+                          xsValue: 100,
+                          smValue: 200,
+                          mdValue: 300,
+                          lgValue: 400,
+                          xlValue: 400) ??
+                      400.0,
+                ),
+                child: PageView.builder(
+                  onPageChanged: (int index) {
+                    screenWidth < 850
+                        ? setState(() {
+                            _currentPage = index;
+                            _startTopAutoScroll();
+                          })
+                        : null;
+                  },
+                  controller: _pageController,
+                  itemCount: carouselItems.length,
+                  physics: screenWidth < 850
+                      ? AlwaysScrollableScrollPhysics()
+                      : NeverScrollableScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    return GSBox(
+                      child: ClipRRect(
+                        child: GsGestureDetector(
+                          onPressed: () {
+                            context.push("/category");
+                          },
+                          child: GSImage(
+                            path: carouselItems[index]['image']!,
+                            imageType: GSImageType.asset,
+                            fit: BoxFit.fitWidth,
+                            style: GSStyle(
+                              width: double.infinity,
                             ),
                           ),
                         ),
-                      );
-                    },
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(
-                    carouselItems.length,
-                    (index) => GsGestureDetector(
-                      onPressed: () => _onDotPressed(index),
-                      child: GSBox(
-                        style: GSStyle(
-                          color: _currentPage == index
-                              ? GSTheme.of(context).trueGray500
-                              : GSTheme.of(context).trueGray200,
-                          margin: const EdgeInsets.all(6.0),
-                          width: 8,
-                          height: 8,
-                          borderRadius: 20,
-                        ),
-                        shape: BoxShape.circle,
                       ),
-                    ),
-                  ),
+                    );
+                  },
                 ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getResponsiveValue(
-                        context: context,
-                        xsValue: 8,
-                        smValue: 12,
-                        mdValue: 20,
-                        lgValue: 24) ??
-                    24,
-                vertical: getResponsiveValue(
-                        context: context,
-                        xsValue: 15,
-                        smValue: 25,
-                        mdValue: 35,
-                        lgValue: 50) ??
-                    50),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: GSText(
-                    text: "Medal Worthy Brands To Bag".toUpperCase(),
-                    bold: true,
-                    style: GSStyle(
-                        lg: GSStyle(
-                            textStyle:
-                                const TextStyle(wordSpacing: 2, fontSize: 40)),
-                        md: GSStyle(
-                            textStyle:
-                                const TextStyle(wordSpacing: 2, fontSize: 30)),
-                        sm: GSStyle(
-                            textStyle:
-                                const TextStyle(wordSpacing: 2, fontSize: 22)),
-                        xs: GSStyle(
-                            textStyle:
-                                const TextStyle(wordSpacing: 2, fontSize: 18)),
-                        color: GSTheme.of(context).trueGray600,
-                        textStyle: const TextStyle(wordSpacing: 2)),
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          GSBox(
-              style: GSStyle(
-                height: getResponsiveValue(
-                    context: context,
-                    xsValue: 220,
-                    smValue: 240,
-                    mdValue: 260,
-                    lgValue: 280,
-                    xlValue: 320),
               ),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: PageView.builder(
-                      controller: _bottomPageController,
-                      itemCount: (brandItems.length / itemsPerPage).ceil(),
-                      onPageChanged: (int index) {
-                        setState(() {
-                          _currentBottomPage = index;
-                          _startBottomAutoScroll();
-                        });
-                      },
-                      itemBuilder: (context, pageIndex) {
-                        return CustomCard(
-                            items: brandItems,
-                            pageIndex: pageIndex,
-                            itemsPerPage: itemsPerPage);
-                      },
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      (brandItems.length / itemsPerPage).ceil(),
-                      (index) => GsGestureDetector(
-                        onPressed: () => _onBottomDotPressed(index),
-                        child: GSBox(
-                          style: GSStyle(
-                            color: _currentBottomPage == index
-                                ? GSTheme.of(context).trueGray500
-                                : GSTheme.of(context).trueGray200,
-                            margin: const EdgeInsets.all(6.0),
-                            width: getResponsiveValue(
-                                context: context,
-                                xsValue: 0,
-                                smValue: 0,
-                                mdValue: 8,
-                                lgValue: 8,
-                                xlValue: 8),
-                            height: getResponsiveValue(
-                                context: context,
-                                xsValue: 0,
-                                smValue: 0,
-                                mdValue: 8,
-                                lgValue: 8,
-                                xlValue: 8),
-                            borderRadius: 20,
-                          ),
-                          shape: BoxShape.circle,
-                        ),
+              GSHStack(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  carouselItems.length,
+                  (index) => GsGestureDetector(
+                    onPressed: () => _onDotPressed(index),
+                    child: GSBox(
+                      style: GSStyle(
+                        color: _currentPage == index
+                            ? GSTheme.of(context).trueGray500
+                            : GSTheme.of(context).trueGray200,
+                        margin: const EdgeInsets.all(6.0),
+                        width: 8,
+                        height: 8,
+                        borderRadius: 20,
                       ),
+                      shape: BoxShape.circle,
                     ),
                   ),
-                ],
-              )),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: getResponsiveValue(
-                        context: context,
-                        xsValue: 8,
-                        smValue: 12,
-                        mdValue: 20,
-                        lgValue: 24) ??
-                    24,
-                vertical: getResponsiveValue(
-                        context: context,
-                        xsValue: 15,
-                        smValue: 25,
-                        mdValue: 35,
-                        lgValue: 50) ??
-                    50),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                GSText(
-                  text: "Grand Global Brands".toUpperCase(),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: getResponsiveValue(
+                      context: context,
+                      xsValue: 8,
+                      smValue: 12,
+                      mdValue: 20,
+                      lgValue: 24) ??
+                  24,
+              vertical: getResponsiveValue(
+                      context: context,
+                      xsValue: 15,
+                      smValue: 25,
+                      mdValue: 35,
+                      lgValue: 50) ??
+                  50),
+          child: GSHStack(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                child: GSText(
+                  text: "Medal Worthy Brands To Bag".toUpperCase(),
                   bold: true,
                   style: GSStyle(
                       lg: GSStyle(
@@ -406,94 +294,202 @@ class _MyWidgetState extends State<AllCategoryScreen> {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 3,
                 ),
-              ],
-            ),
-          ),
-          GSBox(
-              style: GSStyle(
-                height: getResponsiveValue(
-                    context: context,
-                    xsValue: 220,
-                    smValue: 240,
-                    mdValue: 260,
-                    lgValue: 280,
-                    xlValue: 320),
               ),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: PageView.builder(
-                      controller: _globalBottomPageController,
-                      itemCount:
-                          (globalBrandItems.length / itemsPerPage).ceil(),
-                      onPageChanged: (int index) {
-                        setState(() {
-                          _currentGlobalBottomPage = index;
-                          _startGlobalBottomAutoScroll();
-                        });
-                      },
-                      itemBuilder: (context, pageIndex) {
-                        return CustomCard(
-                            items: globalBrandItems,
-                            pageIndex: pageIndex,
-                            itemsPerPage: itemsPerPage);
-                      },
-                    ),
+            ],
+          ),
+        ),
+        GSBox(
+            style: GSStyle(
+              height: getResponsiveValue(
+                  context: context,
+                  xsValue: 220,
+                  smValue: 240,
+                  mdValue: 260,
+                  lgValue: 280,
+                  xlValue: 320),
+            ),
+            child: GSVStack(
+              children: [
+                Expanded(
+                  child: PageView.builder(
+                    controller: _bottomPageController,
+                    itemCount: (brandItems.length / itemsPerPage).ceil(),
+                    onPageChanged: (int index) {
+                      setState(() {
+                        _currentBottomPage = index;
+                        _startBottomAutoScroll();
+                      });
+                    },
+                    itemBuilder: (context, pageIndex) {
+                      return CustomCard(
+                          items: brandItems,
+                          pageIndex: pageIndex,
+                          itemsPerPage: itemsPerPage);
+                    },
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      (globalBrandItems.length / itemsPerPage).ceil(),
-                      (index) => GsGestureDetector(
-                        onPressed: () => _onGlobalBottomDotPressed(index),
-                        child: GSBox(
-                          style: GSStyle(
-                            color: _currentGlobalBottomPage == index
-                                ? GSTheme.of(context).trueGray500
-                                : GSTheme.of(context).trueGray200,
-                            margin: const EdgeInsets.all(6.0),
-                            width: getResponsiveValue(
-                                context: context,
-                                xsValue: 0,
-                                smValue: 0,
-                                mdValue: 8,
-                                lgValue: 8,
-                                xlValue: 8),
-                            height: getResponsiveValue(
-                                context: context,
-                                xsValue: 0,
-                                smValue: 0,
-                                mdValue: 8,
-                                lgValue: 8,
-                                xlValue: 8),
-                            borderRadius: 20,
-                          ),
-                          shape: BoxShape.circle,
+                ),
+                GSHStack(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    (brandItems.length / itemsPerPage).ceil(),
+                    (index) => GsGestureDetector(
+                      onPressed: () => _onBottomDotPressed(index),
+                      child: GSBox(
+                        style: GSStyle(
+                          color: _currentBottomPage == index
+                              ? GSTheme.of(context).trueGray500
+                              : GSTheme.of(context).trueGray200,
+                          margin: const EdgeInsets.all(6.0),
+                          width: getResponsiveValue(
+                              context: context,
+                              xsValue: 0,
+                              smValue: 0,
+                              mdValue: 8,
+                              lgValue: 8,
+                              xlValue: 8),
+                          height: getResponsiveValue(
+                              context: context,
+                              xsValue: 0,
+                              smValue: 0,
+                              mdValue: 8,
+                              lgValue: 8,
+                              xlValue: 8),
+                          borderRadius: 20,
                         ),
+                        shape: BoxShape.circle,
                       ),
                     ),
                   ),
-                ],
-              )),
-          GSBox(
+                ),
+              ],
+            )),
+        Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: getResponsiveValue(
+                      context: context,
+                      xsValue: 8,
+                      smValue: 12,
+                      mdValue: 20,
+                      lgValue: 24) ??
+                  24,
+              vertical: getResponsiveValue(
+                      context: context,
+                      xsValue: 15,
+                      smValue: 25,
+                      mdValue: 35,
+                      lgValue: 50) ??
+                  50),
+          child: GSHStack(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              GSText(
+                text: "Grand Global Brands".toUpperCase(),
+                bold: true,
+                style: GSStyle(
+                    lg: GSStyle(
+                        textStyle:
+                            const TextStyle(wordSpacing: 2, fontSize: 40)),
+                    md: GSStyle(
+                        textStyle:
+                            const TextStyle(wordSpacing: 2, fontSize: 30)),
+                    sm: GSStyle(
+                        textStyle:
+                            const TextStyle(wordSpacing: 2, fontSize: 22)),
+                    xs: GSStyle(
+                        textStyle:
+                            const TextStyle(wordSpacing: 2, fontSize: 18)),
+                    color: GSTheme.of(context).trueGray600,
+                    textStyle: const TextStyle(wordSpacing: 2)),
+                textAlign: TextAlign.start,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 3,
+              ),
+            ],
+          ),
+        ),
+        GSBox(
             style: GSStyle(
-              height: 30,
-              lg: GSStyle(isVisible: true),
+              height: getResponsiveValue(
+                  context: context,
+                  xsValue: 220,
+                  smValue: 240,
+                  mdValue: 260,
+                  lgValue: 280,
+                  xlValue: 320),
+            ),
+            child: GSVStack(
+              children: [
+                Expanded(
+                  child: PageView.builder(
+                    controller: _globalBottomPageController,
+                    itemCount: (globalBrandItems.length / itemsPerPage).ceil(),
+                    onPageChanged: (int index) {
+                      setState(() {
+                        _currentGlobalBottomPage = index;
+                        _startGlobalBottomAutoScroll();
+                      });
+                    },
+                    itemBuilder: (context, pageIndex) {
+                      return CustomCard(
+                          items: globalBrandItems,
+                          pageIndex: pageIndex,
+                          itemsPerPage: itemsPerPage);
+                    },
+                  ),
+                ),
+                GSHStack(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    (globalBrandItems.length / itemsPerPage).ceil(),
+                    (index) => GsGestureDetector(
+                      onPressed: () => _onGlobalBottomDotPressed(index),
+                      child: GSBox(
+                        style: GSStyle(
+                          color: _currentGlobalBottomPage == index
+                              ? GSTheme.of(context).trueGray500
+                              : GSTheme.of(context).trueGray200,
+                          margin: const EdgeInsets.all(6.0),
+                          width: getResponsiveValue(
+                              context: context,
+                              xsValue: 0,
+                              smValue: 0,
+                              mdValue: 8,
+                              lgValue: 8,
+                              xlValue: 8),
+                          height: getResponsiveValue(
+                              context: context,
+                              xsValue: 0,
+                              smValue: 0,
+                              mdValue: 8,
+                              lgValue: 8,
+                              xlValue: 8),
+                          borderRadius: 20,
+                        ),
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )),
+        GSBox(
+          style: GSStyle(
+            height: 30,
+
+            md: GSStyle(isVisible: false),
+            xs: GSStyle(isVisible: false),
+            sm: GSStyle(isVisible: false),
+          ),
+        ),
+        GSBox(
+            style: GSStyle(
+
               md: GSStyle(isVisible: false),
               xs: GSStyle(isVisible: false),
               sm: GSStyle(isVisible: false),
             ),
-          ),
-          GSBox(
-              style: GSStyle(
-                lg: GSStyle(isVisible: true),
-                md: GSStyle(isVisible: false),
-                xs: GSStyle(isVisible: false),
-                sm: GSStyle(isVisible: false),
-              ),
-              child: CustomFooter()),
-        ],
-      ),
+            child: CustomFooter()),
+      ],
     );
   }
 }

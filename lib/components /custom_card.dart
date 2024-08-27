@@ -17,13 +17,13 @@ class CustomCard extends StatefulWidget {
 class _CustomCardState extends State<CustomCard> {
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return GSHStack(
       mainAxisAlignment: MainAxisAlignment.start,
       children: widget.items
           .skip(widget.pageIndex * widget.itemsPerPage)
           .take(widget.itemsPerPage)
           .map((item) => Expanded(
-                child: Column(
+                child: GSVStack(
                   children: [
                     FittedBox(
                       child: GSBox(

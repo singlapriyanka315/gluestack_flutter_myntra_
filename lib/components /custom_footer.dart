@@ -23,10 +23,10 @@ class CustomFooter extends StatelessWidget {
                   lgValue: 40) ??
               40,
         ),
-        child: Column(
+        child: GSVStack(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            GSHStack(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Flexible(
@@ -64,7 +64,7 @@ class CustomFooter extends StatelessWidget {
                 ),
                 Flexible(
                   fit: FlexFit.tight,
-                  child: Column(
+                  child: GSVStack(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       GSText(
@@ -87,7 +87,7 @@ class CustomFooter extends StatelessWidget {
                         style: GSStyle(height: 10),
                       ),
                       FittedBox(
-                        child: Row(
+                        child: GSHStack(
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(10),
@@ -159,7 +159,7 @@ class CustomFooter extends StatelessWidget {
                       GSBox(
                         style: GSStyle(height: 10),
                       ),
-                      Row(
+                      GSHStack(
                         children: [
                           _buildSocialIcon(Icons.facebook_outlined),
                           _buildSocialIcon(Icons.facebook_outlined),
@@ -176,7 +176,7 @@ class CustomFooter extends StatelessWidget {
                 ),
                 Flexible(
                   fit: FlexFit.tight,
-                  child: Column(
+                  child: GSVStack(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _buildFeature(
@@ -203,7 +203,7 @@ class CustomFooter extends StatelessWidget {
 
   Widget _buildColumnSection(
       {required String title, required List<String> items}) {
-    return Column(
+    return GSVStack(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         GSText(
@@ -217,7 +217,7 @@ class CustomFooter extends StatelessWidget {
               ),
             )),
         GSBox(style: GSStyle(height: 10)),
-        Column(
+        GSVStack(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: items.map((item) {
             return Padding(
@@ -249,7 +249,7 @@ class CustomFooter extends StatelessWidget {
   }
 
   Widget _buildFeature({String? iconPath, required String text}) {
-    return Row(
+    return GSHStack(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (iconPath != null)
