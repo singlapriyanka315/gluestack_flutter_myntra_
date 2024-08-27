@@ -63,16 +63,19 @@ class _CustomAppBarState extends State<CustomAppBar> {
                         xlValue: 22,
                       ) ??
                       0),
-                  child: GSImage(
-                    size: GSImageSizes.$xs,
-                    path: 'assets/images/myntra_logo.png',
-                    imageType: GSImageType.asset,
+                  child: MouseRegion(
+                    child: GSImage(
+                      size: GSImageSizes.$xs,
+                      path: 'assets/images/myntra_logo.png',
+                      imageType: GSImageType.asset,
+                    ),
                   ),
                 ),
 
                 GSBox(
                   style: GSStyle(
-               
+                    lg: GSStyle(isVisible: true),
+                    md: GSStyle(isVisible: true),
                     xs: GSStyle(isVisible: false),
                     sm: GSStyle(isVisible: false),
                   ),
@@ -123,6 +126,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       prefixIcon: Icon(Icons.search,
                           color: GSTheme.of(context).trueGray400),
                       style: GSStyle(
+
+                          // bg: GSTheme.of(context).black,
                           onFocus: GSStyle(
                             borderColor: GSTheme.of(context).trueGray200,
                             bg: GSTheme.of(context).black,
@@ -144,6 +149,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                           0),
                   child: GSBox(
                     style: GSStyle(
+                      lg: GSStyle(isVisible: true),
                       md: GSStyle(isVisible: false),
                       xs: GSStyle(isVisible: false),
                       sm: GSStyle(isVisible: false),

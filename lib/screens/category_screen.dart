@@ -166,21 +166,21 @@ class FilterSidebar extends StatelessWidget {
             ]),
           ),
 
-          GSBox(
-            style: GSStyle(
-              borderColor: GSTheme.of(context).trueGray300,
-              width: MediaQuery.of(context).size.width,
-            ),
-            child: FilterSection(
-              title: "Price".toUpperCase(),
-              customWidget: RangeSlider(
-                values: RangeValues(300, 10300),
-                min: 0,
-                max: 20000,
-                onChanged: (values) {},
-              ),
-            ),
-          ),
+          // GSBox(
+          //   style: GSStyle(
+          //     borderColor: GSTheme.of(context).trueGray300,
+          //     width: MediaQuery.of(context).size.width,
+          //   ),
+          //   child: FilterSection(
+          //     title: "Price".toUpperCase(),
+          //     customWidget: RangeSlider(
+          //       values: RangeValues(300, 10300),
+          //       min: 0,
+          //       max: 20000,
+          //       onChanged: (values) {},
+          //     ),
+          //   ),
+          // ),
 
           GSBox(
             style: GSStyle(
@@ -246,49 +246,52 @@ class FilterSection extends StatelessWidget {
               children: List.generate(options!.length, (index) {
                 return Padding(
                   padding: EdgeInsets.only(top: 5.0, bottom: 5),
-                  child: GSBox(
-                    child: GSCheckBox(
-                      style: GSStyle(borderWidth: 0.3),
-                      // size: GSCheckBoxSizes.$sm,
-                      onChanged: (value) {},
-                      icon: GSBox(
-                        style: GSStyle(
-                          height: 20,
-                          width: 20,
-                          borderWidth: 0.3,
+                  child: FittedBox(
+                    child: GSBox(
+                      child: GSCheckBox(
+                        style: GSStyle(borderWidth: 0.3),
+                        size: GSCheckBoxSizes.$sm,
+                        onChanged: (value) {},
+                        icon: GSBox(
+                          style: GSStyle(
+                            height: 20,
+                            width: 20,
+                            borderWidth: 0.3,
+                          ),
+                          child: FittedBox(
+                            child: GSCheckBoxIndicator(
+                                style: GSStyle(
+                                  borderRadius: 2,
+                                  borderWidth: 0.3,
+                                ),
+                                child: GSCheckBoxIcon()),
+                          ),
                         ),
-                        child: FittedBox(
-                          child: GSCheckBoxIndicator(
-                              style: GSStyle(
-                                borderRadius: 2,
-                                borderWidth: 0.3,
+                        value: options![index],
+                        label: FittedBox(
+                          child: GSHStack(
+                            space: GSHstackSpaces.$xs,
+                            children: [
+                              GSBox(style: GSStyle(width: 6)),
+                              GSCheckBoxLabel(
+                                text: "${options![index]}",
+                                style: GSStyle(
+                                    color: GSTheme.of(context).trueGray800,
+                                    textStyle: TextStyle(fontSize: 13)),
                               ),
-                              child: GSCheckBoxIcon()),
-                        ),
-                      ),
-                      value: options![index],
-                      label: FittedBox(
-                        child: GSHStack(
-                          space: GSHstackSpaces.$xs,
-                          children: [
-                            GSBox(style: GSStyle(width: 6)),
-                            GSCheckBoxLabel(
-                              text: "${options![index]}",
-                              style: GSStyle(
-                                  color: GSTheme.of(context).trueGray800,
-                                  textStyle: TextStyle(fontSize: 13)),
-                            ),
-                            numbersOfProducts?[index] != null
-                                ? GSCheckBoxLabel(
-                                    text: "(${numbersOfProducts![index]})",
-                                    style: GSStyle(
-                                        color: GSTheme.of(context).trueGray400,
-                                        textStyle: TextStyle(fontSize: 10)),
-                                  )
-                                : GSBox(
-                                    style: GSStyle(height: 0),
-                                  )
-                          ],
+                              numbersOfProducts?[index] != null
+                                  ? GSCheckBoxLabel(
+                                      text: "(${numbersOfProducts![index]})",
+                                      style: GSStyle(
+                                          color:
+                                              GSTheme.of(context).trueGray400,
+                                          textStyle: TextStyle(fontSize: 10)),
+                                    )
+                                  : GSBox(
+                                      style: GSStyle(height: 0),
+                                    )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -314,7 +317,7 @@ class ProductGrid extends StatelessWidget {
         padding: EdgeInsets.all(getResponsiveValue(
                 context: context,
                 xsValue: 4,
-                smValue: 10,
+                smValue: 8,
                 mdValue: 12,
                 lgValue: 16,
                 xlValue: 20) ??

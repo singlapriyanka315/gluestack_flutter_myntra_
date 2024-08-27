@@ -3,7 +3,7 @@ import 'package:myntra_clone/screens/home_screen.dart';
 import 'package:myntra_clone/screens/category_screen.dart';
 
 final GoRouter router = GoRouter(
-  initialLocation:  '/category',
+  // initialLocation:  '/category',
   routes: [
     GoRoute(
       path: '/',
