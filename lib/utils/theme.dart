@@ -3,7 +3,7 @@ import 'dart:ui';
 const myTheme = {
   "light_theme": {
     "colors": {
-      'text700': Color(0xFF8C8C8C),
+      'text700': Color.fromARGB(255, 0, 0, 0),
       'info700': Color(0xffffffff),
       'info600': Color(0xffffffff),
       'info400': Color(0xffffffff),

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:gluestack_ui/gluestack_ui.dart';
 import 'package:go_router/go_router.dart';
 
@@ -354,77 +353,82 @@ class ProductGrid extends StatelessWidget {
 class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GSBox(
-      style: GSStyle(
-        bg: GSTheme.of(context).white,
-        borderRadius: 12,
-        elevation: 2,
-      ),
-      child: GSVStack(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AspectRatio(
-            aspectRatio: 3 / 4, // Elongated aspect ratio for the image
-            child: GSImage(
-              path: 'assets/images/mochi.jpg',
-              imageType: GSImageType.asset,
-              fit: BoxFit.cover, // Ensures the image covers the entire area
+    return GsGestureDetector(
+      onPressed: () {
+        context.push("/productDetails");
+      },
+      child: GSBox(
+        style: GSStyle(
+          bg: GSTheme.of(context).white,
+          borderRadius: 12,
+          elevation: 2,
+        ),
+        child: GSVStack(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AspectRatio(
+              aspectRatio: 3 / 4, // Elongated aspect ratio for the image
+              child: GSImage(
+                path: 'assets/images/mochi.jpg',
+                imageType: GSImageType.asset,
+                fit: BoxFit.cover, // Ensures the image covers the entire area
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(getResponsiveValue(
-                    context: context,
-                    xsValue: 2,
-                    smValue: 4,
-                    mdValue: 4,
-                    lgValue: 6,
-                    xlValue: 8) ??
-                8.0),
-            child: GSVStack(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                FittedBox(
-                  child: GSText(
-                    text: 'MOCHI',
-                    bold: true,
-                    overflow: TextOverflow.ellipsis,
-                    style: GSStyle(
-                      color: GSTheme.of(context).black,
-                      textStyle: TextStyle(fontSize: 14),
+            Padding(
+              padding: EdgeInsets.all(getResponsiveValue(
+                      context: context,
+                      xsValue: 2,
+                      smValue: 4,
+                      mdValue: 4,
+                      lgValue: 6,
+                      xlValue: 8) ??
+                  8.0),
+              child: GSVStack(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  FittedBox(
+                    child: GSText(
+                      text: 'MOCHI',
+                      bold: true,
+                      overflow: TextOverflow.ellipsis,
+                      style: GSStyle(
+                        color: GSTheme.of(context).black,
+                        textStyle: TextStyle(fontSize: 14),
+                      ),
                     ),
                   ),
-                ),
-                GSText(
-                  text: 'Women Embellished Ethnic Handcrafted Mojaris',
-                  overflow: TextOverflow.ellipsis,
-                  style: GSStyle(
-                    color: GSTheme.of(context).trueGray500,
-                    textStyle: TextStyle(fontSize: 12),
-                  ),
-                ),
-                SizedBox(
-                    height: getResponsiveValue(
-                        context: context,
-                        xsValue: 2,
-                        smValue: 4,
-                        mdValue: 4,
-                        lgValue: 6,
-                        xlValue: 8)),
-                FittedBox(
-                  child: GSText(
-                    text: 'Rs. 887 (63% OFF)',
-                    bold: true,
+                  GSText(
+                    text: 'Women Embellished Ethnic Handcrafted Mojaris',
                     overflow: TextOverflow.ellipsis,
                     style: GSStyle(
-                      color: GSTheme.of(context).black,
+                      color: GSTheme.of(context).trueGray500,
                       textStyle: TextStyle(fontSize: 12),
                     ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                      height: getResponsiveValue(
+                          context: context,
+                          xsValue: 2,
+                          smValue: 4,
+                          mdValue: 4,
+                          lgValue: 6,
+                          xlValue: 8)),
+                  FittedBox(
+                    child: GSText(
+                      text: 'Rs. 887 (63% OFF)',
+                      bold: true,
+                      overflow: TextOverflow.ellipsis,
+                      style: GSStyle(
+                        color: GSTheme.of(context).black,
+                        textStyle: TextStyle(fontSize: 12),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
