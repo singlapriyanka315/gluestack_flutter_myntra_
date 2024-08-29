@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
-import 'package:myntra_clone/screens/home_screen.dart';
+import 'package:myntra_clone/screens/home_screen/home_screen.dart';
 import 'package:myntra_clone/screens/category_screen.dart';
-import 'package:myntra_clone/screens/product_detail_screen.dart';
+import 'package:myntra_clone/screens/product_details/product_detail_screen.dart';
 
 final GoRouter router = GoRouter(
   initialLocation:  '/productDetails',

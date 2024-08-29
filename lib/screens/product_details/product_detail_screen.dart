@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gluestack_ui/gluestack_ui.dart';
 import 'package:go_router/go_router.dart';
+import 'package:myntra_clone/screens/product_details/custom_widgets/product_details.dart';
+import 'package:myntra_clone/screens/product_details/custom_widgets/size_option.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen({super.key});
@@ -112,7 +114,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                 child: AnimatedContainer(
                                   duration: Duration(milliseconds: 300),
                                   transform: isHovered
-                                      ? (Matrix4.identity()..scale(1.2))
+                                      ? (Matrix4.identity()..scale(1.1))
                                       : Matrix4.identity()
                                     ..scale(1),
                                   transformAlignment: Alignment.center,
@@ -361,11 +363,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           FittedBox(
                             child: GSHStack(
                               children: [
-                                SizeOption(size: '4'),
-                                SizeOption(size: '5', quantityLeft: 1),
-                                SizeOption(size: '6', quantityLeft: 4),
-                                SizeOption(size: '7'),
-                                SizeOption(size: '8'),
+                                // SizeOption(size: '4'),
+                                // SizeOption(size: '5', quantityLeft: 1),
+                                // SizeOption(size: '6', quantityLeft: 4),
+                                // SizeOption(size: '7'),
+                                // SizeOption(size: '8'),
+                                SizeSelector()
                               ],
                             ),
                           ),
@@ -842,114 +845,6 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class SizeOption extends StatefulWidget {
-  final String size;
-  final int? quantityLeft;
-
-  const SizeOption({required this.size, this.quantityLeft});
-
-  @override
-  _SizeOptionState createState() => _SizeOptionState();
-}
-
-class _SizeOptionState extends State<SizeOption> {
-  bool isSelected = false;
-
-  @override
-  Widget build(BuildContext context) {
-    isSelected = false;
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: GSStack(
-        children: [
-          GSFocusableActionDetector(
-            child: Builder(builder: (context) {
-              final isHovered =
-                  GSFocusableActionDetectorProvider.isHovered(context);
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isSelected = !isSelected; // Toggle the selected state
-                  });
-                },
-                child: Builder(builder: (context) {
-                  final selected = isSelected;
-                  return GSBox(
-                      style: GSStyle(
-                          height: 40,
-                          width: 40,
-                          borderColor: selected
-                              ? Color.fromARGB(255, 255, 67, 108)
-                              : (isHovered
-                                  ? Color.fromARGB(255, 255, 67, 108)
-                                  : GSTheme.of(context).trueGray400),
-                          borderRadius: 20,
-                          borderWidth: 1),
-                      child: Center(
-                          child: GSText(
-                              text: widget.size,
-                              bold: true,
-                              style: GSStyle(
-                                color: selected
-                                    ? Color.fromARGB(255, 255, 67, 108)
-                                    : null,
-                                textStyle: TextStyle(
-                                  fontSize: 12,
-                                ),
-                              ))));
-                }),
-              );
-            }),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Visibility(
-              visible: widget.quantityLeft != null,
-              child: GSBox(
-                  child: Center(
-                      child: GSText(
-                    text: "${widget.quantityLeft} left",
-                    style: GSStyle(
-                        color: GSTheme.of(context).white,
-                        textStyle: TextStyle(fontSize: 8)),
-                  )),
-                  style: GSStyle(
-                    borderRadius: 2,
-                    height: 12,
-                    color: Color.fromARGB(255, 255, 136, 45),
-                  )),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class ProductDetails extends StatelessWidget {
-  final String productDetail;
-
-  const ProductDetails({required this.productDetail});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: GSText(
-          text: productDetail,
-          style: GSStyle(
-            color: GSTheme.of(context).trueGray800,
-            textStyle: TextStyle(
-              letterSpacing: 0.2,
-              fontSize: 14,
-            ),
-          )),
     );
   }
 }
