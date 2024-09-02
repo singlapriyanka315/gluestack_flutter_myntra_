@@ -1,5 +1,5 @@
-import 'package:gluestack_ui/gluestack_ui.dart';
-import 'package:go_router/go_router.dart';
+
+import 'package:myntra_clone/myntra_export.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key});
@@ -164,22 +164,6 @@ class FilterSidebar extends StatelessWidget {
               289
             ]),
           ),
-
-          // GSBox(
-          //   style: GSStyle(
-          //     borderColor: GSTheme.of(context).trueGray300,
-          //     width: MediaQuery.of(context).size.width,
-          //   ),
-          //   child: FilterSection(
-          //     title: "Price".toUpperCase(),
-          //     customWidget: RangeSlider(
-          //       values: RangeValues(300, 10300),
-          //       min: 0,
-          //       max: 20000,
-          //       onChanged: (values) {},
-          //     ),
-          //   ),
-          // ),
 
           GSBox(
             style: GSStyle(

@@ -1,4 +1,4 @@
-import 'package:gluestack_ui/gluestack_ui.dart';
+import 'package:myntra_clone/myntra_export.dart';
 
 class BottomBarTile extends StatelessWidget {
   final Function? onTap;

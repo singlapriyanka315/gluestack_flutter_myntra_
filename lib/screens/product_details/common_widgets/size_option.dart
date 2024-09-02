@@ -1,4 +1,4 @@
-import 'package:gluestack_ui/gluestack_ui.dart';
+import 'package:myntra_clone/myntra_export.dart';
 
 class SizeSelector extends StatefulWidget {
   @override
@@ -22,28 +22,33 @@ class _SizeSelectorState extends State<SizeSelector> {
           size: '4',
           isSelected: selectedSize == '4',
           onSelected: onSizeSelected,
+          isOutOfStock: true,
         ),
         SizeOption(
           size: '5',
           quantityLeft: 1,
           isSelected: selectedSize == '5',
           onSelected: onSizeSelected,
+          isOutOfStock: false,
         ),
         SizeOption(
           size: '6',
           quantityLeft: 4,
           isSelected: selectedSize == '6',
           onSelected: onSizeSelected,
+          isOutOfStock: false,
         ),
         SizeOption(
           size: '7',
           isSelected: selectedSize == '7',
           onSelected: onSizeSelected,
+          isOutOfStock: false,
         ),
         SizeOption(
           size: '8',
           isSelected: selectedSize == '8',
           onSelected: onSizeSelected,
+          isOutOfStock: false,
         ),
       ],
     );
@@ -55,13 +60,14 @@ class SizeOption extends StatelessWidget {
   final int? quantityLeft;
   final bool isSelected;
   final Function(String) onSelected;
+  final bool? isOutOfStock;
 
-  const SizeOption({
-    required this.size,
-    this.quantityLeft,
-    required this.isSelected,
-    required this.onSelected,
-  });
+  const SizeOption(
+      {required this.size,
+      this.quantityLeft,
+      required this.isSelected,
+      required this.onSelected,
+      this.isOutOfStock});
 
   @override
   Widget build(BuildContext context) {
@@ -76,15 +82,18 @@ class SizeOption extends StatelessWidget {
               return GSButton(
                 variant: GSButtonVariants.outline,
                 onPressed: () {
-                  onSelected(size);
+                  isOutOfStock == true ? null : onSelected(size);
                 },
                 child: GSText(
                     text: size,
                     bold: true,
                     style: GSStyle(
                       bg: Color.fromARGB(255, 5, 40, 42),
-                      color:
-                          isSelected ? Color.fromARGB(255, 255, 67, 108) : null,
+                      color: isSelected
+                          ? Color.fromARGB(255, 255, 67, 108)
+                          : isOutOfStock == true
+                              ? GSTheme.of(context).trueGray300
+                              : null,
                       textStyle: TextStyle(
                         fontSize: 12,
                       ),
@@ -94,16 +103,35 @@ class SizeOption extends StatelessWidget {
                     width: 50,
                     padding: EdgeInsets.all(0),
                     onHover: GSStyle(bg: Color.fromARGB(0, 0, 0, 0)),
-                    borderColor: isSelected
-                        ? Color.fromARGB(255, 255, 67, 108)
-                        : (isHovered
+                    borderColor: isOutOfStock == true
+                        ? GSTheme.of(context).trueGray300
+                        : isSelected
                             ? Color.fromARGB(255, 255, 67, 108)
-                            : GSTheme.of(context).trueGray400),
+                            : isHovered
+                                ? Color.fromARGB(255, 255, 67, 108)
+                                : GSTheme.of(context).trueGray400,
                     borderRadius: 30,
                     borderWidth: 1),
               );
             }),
           ),
+          isOutOfStock == true
+              ? Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  child: Transform.rotate(
+                    angle: 45 * 3.141592653589793238 / 180,
+                    child: GSDivider(
+                      orientation: GSOrientations.vertical,
+                      style: GSStyle(
+                        color: GSTheme.of(context).trueGray300,
+                      ),
+                    ),
+                  ),
+                )
+              : GSBox(),
           Positioned(
             bottom: 0,
             left: 0,

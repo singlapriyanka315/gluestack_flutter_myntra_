@@ -1,10 +1,5 @@
 import 'dart:async';
-import 'package:gluestack_ui/gluestack_ui.dart';
-import 'package:go_router/go_router.dart';
-import '../components /custom_card.dart';
-import '../components /custom_footer.dart';
-import '../models/global_brands_model.dart';
-import '../models/medal_worthy_brands_model.dart';
+import 'package:myntra_clone/myntra_export.dart';
 
 class AllCategoryScreen extends StatefulWidget {
   const AllCategoryScreen({super.key});
@@ -475,7 +470,6 @@ class _MyWidgetState extends State<AllCategoryScreen> {
         GSBox(
           style: GSStyle(
             height: 30,
-
             md: GSStyle(isVisible: false),
             xs: GSStyle(isVisible: false),
             sm: GSStyle(isVisible: false),
@@ -483,7 +477,6 @@ class _MyWidgetState extends State<AllCategoryScreen> {
         ),
         GSBox(
             style: GSStyle(
-
               md: GSStyle(isVisible: false),
               xs: GSStyle(isVisible: false),
               sm: GSStyle(isVisible: false),

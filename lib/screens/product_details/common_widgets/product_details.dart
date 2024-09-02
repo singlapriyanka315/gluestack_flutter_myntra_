@@ -1,4 +1,4 @@
-import 'package:gluestack_ui/gluestack_ui.dart';
+import 'package:myntra_clone/myntra_export.dart';
 
 class ProductDetails extends StatelessWidget {
   final String productDetail;
@@ -15,7 +15,9 @@ class ProductDetails extends StatelessWidget {
             color: GSTheme.of(context).trueGray800,
             textStyle: TextStyle(
               letterSpacing: 0.2,
-              fontSize: 14,
+              fontSize:
+             
+                  14,
             ),
           )),
     );

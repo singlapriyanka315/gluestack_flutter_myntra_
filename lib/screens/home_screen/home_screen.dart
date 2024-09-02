@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gluestack_ui/gluestack_ui.dart';
-import 'package:myntra_clone/components%20/appbar.dart';
-import 'package:myntra_clone/components%20/bottom_app_bar.dart';
-import 'package:myntra_clone/screens/all_category_screen.dart';
+import 'package:myntra_clone/myntra_export.dart';
 
 class HomeScreen extends StatefulWidget {
   final Widget? childScreen;
