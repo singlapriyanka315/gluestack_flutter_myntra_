@@ -139,7 +139,7 @@ class _ProductImageWidgetState extends State<ProductImageWidget> {
                               Positioned(
                                   top: MediaQuery.of(context).size.height * 0.5,
                                   left: 10,
-                                  child: NextButton(
+                                  child: ImageIconButton(
                                       icon: Icons.keyboard_arrow_left,
                                       onPressed: () {
                                         setModalState(() {
@@ -149,9 +149,17 @@ class _ProductImageWidgetState extends State<ProductImageWidget> {
                                         });
                                       })),
                               Positioned(
+                                  top: 10,
+                                  right: 10,
+                                  child: ImageIconButton(
+                                      icon: Icons.close_sharp,
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      })),
+                              Positioned(
                                   right: 10,
                                   top: MediaQuery.of(context).size.height * 0.5,
-                                  child: NextButton(
+                                  child: ImageIconButton(
                                       icon: Icons.keyboard_arrow_right,
                                       onPressed: () {
                                         setModalState(() {
@@ -182,11 +190,12 @@ class _ProductImageWidgetState extends State<ProductImageWidget> {
   }
 }
 
-class NextButton extends StatelessWidget {
+class ImageIconButton extends StatelessWidget {
   final IconData icon;
   final Function() onPressed;
 
-  const NextButton({super.key, required this.icon, required this.onPressed});
+  const ImageIconButton(
+      {super.key, required this.icon, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
