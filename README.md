@@ -32,8 +32,6 @@ The Myntra Clone Web Screens project provides an alternative UI implementation o
 
 https://github.com/user-attachments/assets/df085078-f6c1-44cf-92e0-2b4e621921f2
 
-https://github.com/user-attachments/assets/bced7ca7-f226-4f9b-a7fd-093d332e3dee
-
 https://github.com/user-attachments/assets/237b2f99-28fa-4b2d-9419-a586481f0eca
 
 https://github.com/user-attachments/assets/0dfe2168-78ca-4b2e-8444-cb4672acf8b0
