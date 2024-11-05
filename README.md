@@ -29,6 +29,19 @@ The Myntra Clone Web Screens project provides an alternative UI implementation o
 - **Material-free approach** to UI development for more control over the design and functionality.
 - **Reusable, composable components** built entirely from scratch.
 
+
+https://github.com/user-attachments/assets/df085078-f6c1-44cf-92e0-2b4e621921f2
+
+https://github.com/user-attachments/assets/bced7ca7-f226-4f9b-a7fd-093d332e3dee
+
+https://github.com/user-attachments/assets/237b2f99-28fa-4b2d-9419-a586481f0eca
+
+https://github.com/user-attachments/assets/0dfe2168-78ca-4b2e-8444-cb4672acf8b0
+
+https://github.com/user-attachments/assets/9f1633f8-0c1d-4c44-b6f5-03f21d1e4889
+
+https://github.com/user-attachments/assets/51c2217b-e1d2-4bf2-83d0-cfccf59491f7
+
 ## Why Gluestack?
 
 `Gluestack` is a Flutter package designed for creating UI components with a focus on flexibility and customizability. Unlike Flutter's Material library, which enforces Material Design standards, Gluestack enables developers to create their own component styles and functionalities from scratch. This makes it ideal for projects that need to replicate unique designs without the constraints of Material Design.
