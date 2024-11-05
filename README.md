@@ -1,6 +1,4 @@
-Here’s the updated `README.md` with the new section on the benefits of avoiding Material components integrated into it.
 
----
 
 # Myntra Clone Web Screens Project
 
