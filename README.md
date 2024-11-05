@@ -57,15 +57,15 @@ In summary, avoiding Material components allows us to create a custom, brand-ali
 
 ### Prerequisites
 
-- **Flutter SDK**: Ensure you have Flutter installed. You can download it [here](https://flutter.dev/docs/get-started/install).
+- **Flutter SDK**: Ensure you have Flutter installed. You can download it [here](https://pub.dev/packages/gluestack_ui).
 - **Gluestack Package**: This project relies on Gluestack, so make sure to add it to your `pubspec.yaml`.
 
 ### Installation
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/singlapriyanka315/gluestack_flutter_myntra.git
-   cd gluestack_flutter_myntra
+   git clone https://github.com/singlapriyanka315/gluestack_flutter_myntra_.git
+   cd gluestack_flutter_myntra_
    ```
 
 2. Install dependencies:
